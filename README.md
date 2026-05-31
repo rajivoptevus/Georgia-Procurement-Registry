@@ -1,9 +1,10 @@
-Overview
+Overview:-
 There are two scripts which work together as a complete pipeline for scraping Georgia Procurement Registry (GPR) supplier data and loading it into a PostgreSQL database.
-phase2_only.py - Web Scraper
-Purpose
+
+I.phase2_only.py - Web Scraper
+Purpose:-
 Scrapes all approx. 32,641 suppliers from the Georgia GPR website and extracts detailed information.
-Key Components
+Key Components:-
 solve_captcha():         	 	Handles reCAPTCHA challenges using seleniumbase's 
                           		  	UC (Undetected Chrome) mode
 wait_for_table():	  	Waits for the DataTable to load with supplier rows
@@ -13,17 +14,17 @@ click_next_page():        		Navigates through paginated search results
 parse_detail_page():	  	Extracts full supplier details 
                           			(contacts, NIGP codes, addresses, ethnicity)
 save_final():             		Saves results to CSV and JSON files
-What It Scrapes
+What It Scrapes:-
 •	List page: Supplier ID, company name, city, state, GA resident status, 
 small business status
 •	Detail page: Owner ethnicity, company status/class, address, 
 up to 3 contacts, NIGP codes
-Checkpoint System
+Checkpoint System:-
 •	checkpoint_list_all.json - Saves all supplier IDs collected (prevents re-scraping list)
 •	checkpoint_details_progress.json - Saves detail page results incrementally
 
-import_suppliers_1.py - Database Importer
-Purpose
+II .import_suppliers_1.py - Database Importer
+Purpose:-
 Loads the scraped JSON data into an Azure PostgreSQL database with upsert logic.
 Key Functions
 create_connection():	Establishes PostgreSQL connection to Azure
